@@ -802,7 +802,13 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 72fc7abc72010ab4daa064af934e8083, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1988960163}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 72fc7abc72010ab4daa064af934e8083, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1988960161}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 72fc7abc72010ab4daa064af934e8083, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1988960164}
   m_SourcePrefab: {fileID: 100100000, guid: 72fc7abc72010ab4daa064af934e8083, type: 3}
 --- !u!1 &1988960160 stripped
 GameObject:
@@ -823,6 +829,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tonguePrefab: {fileID: 5279281653113304258, guid: 846730f7707e56d448a78f1268dda001, type: 3}
   tongueSpawnPoint: {fileID: 1988960162}
+  currentTongue: {fileID: 0}
   tongueSpeed: 3
   maxTongueLength: 10
   tongueWaitTime: 0.2
@@ -831,6 +838,83 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 72fc7abc72010ab4daa064af934e8083, type: 3}
   m_PrefabInstance: {fileID: 1988960159}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1988960163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988960160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ea79baccdd164544bb3ea5bdfbdb73e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1988960164
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988960160}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.9, y: 1, z: 0.84}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &2118024791
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2118024793}
+  - component: {fileID: 2118024792}
+  m_Layer: 0
+  m_Name: MouseClickController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2118024792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118024791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27eb18c5f1aeb024f9618b893468f4c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &2118024793
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118024791}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2141013684
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -905,3 +989,4 @@ SceneRoots:
   - {fileID: 272477158}
   - {fileID: 1988960159}
   - {fileID: 1255967643}
+  - {fileID: 2118024793}
