@@ -28,6 +28,7 @@ public class TongueController : MonoBehaviour
                 if (frogID == grappeid)
                 {
                     grappeIdList.Add(grappeid);
+                    grappgescript.TrueGrape();
                     Debug.Log("Üzüm ID ile Frog ID aynı, devam ediliyor.");
                 }
                 else

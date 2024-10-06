@@ -31,7 +31,6 @@ public class TongueScript : MonoBehaviour
     {
         if (currentTongue == null)
         {
-            // Create the tongue if it doesn't exist
             tongueTarget = tongueSpawnPoint.right;
             currentTongue = Instantiate(tonguePrefab, tongueSpawnPoint.position, Quaternion.LookRotation(tongueTarget), tongueSpawnPoint);
             currentTongue.transform.DOScaleX(tonguePrefab.transform.localScale.x + maxTongueLength, tongueSpeed)
@@ -39,7 +38,6 @@ public class TongueScript : MonoBehaviour
         }
         else
         {
-            // If the tongue exists, just reset its scale to the starting position
             currentTongue.transform.localScale = new Vector3(tonguePrefab.transform.localScale.x, currentTongue.transform.localScale.y, currentTongue.transform.localScale.z);
             currentTongue.transform.DOScaleX(tonguePrefab.transform.localScale.x + maxTongueLength, tongueSpeed)
                 .OnComplete(() => StartCoroutine(ReturnTongue()));
