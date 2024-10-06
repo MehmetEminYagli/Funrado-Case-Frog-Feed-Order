@@ -6,12 +6,8 @@ public class MouseClickHandler : MonoBehaviour
 {
     [SerializeField] private FrogScript frog;
     [SerializeField] private TongueController tongue;
-    [SerializeField] private GameController gameController;
     [SerializeField] private int frogID;
-    private void Awake()
-    {
-        gameController = GetComponent<GameController>();
-    }
+
     private void Update()
     {
         if (Input.GetMouseButtonDown(1))
@@ -39,8 +35,6 @@ public class MouseClickHandler : MonoBehaviour
                     tongue = tonguescript.GetTongueController();
                     tongue.SetFrogID(frogID);
                     tonguescript.ShootTongue();
-
-
 
                 }
                 else

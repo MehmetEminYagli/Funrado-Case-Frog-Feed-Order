@@ -46,6 +46,13 @@ public class TongueScript : MonoBehaviour
         }
     }
 
+    public void StopAndReturnTongue()
+    {
+        Debug.Log("Dil durduruyor ve geri çekiliyor");
+        currentTongue.transform.DOKill(); 
+        StartCoroutine(ReturnTongue()); 
+    }
+
     private IEnumerator ReturnTongue()
     {
         yield return new WaitForSeconds(tongueWaitTime);

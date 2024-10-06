@@ -6,6 +6,7 @@ public class GrappgeScript : MonoBehaviour
 {
     [SerializeField] private int grappeID;
     [SerializeField] private List<Material> grappeColorList;
+
     void Start()
     {
         grappeID = 5;
@@ -15,6 +16,9 @@ public class GrappgeScript : MonoBehaviour
     {
         return grappeID;
     }
+
+
+ 
 
 
 }

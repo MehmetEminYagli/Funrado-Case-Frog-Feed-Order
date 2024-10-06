@@ -9,29 +9,41 @@ public class TongueController : MonoBehaviour
     [SerializeField] private List<int> grappeIdList;
     private int frogID;
 
+    private TongueScript tongueScript;
+
+    void Start()
+    {
+        //aklıma suan bu geldi.
+        tongueScript = GetComponentInParent<TongueScript>();
+    }
+
     void OnTriggerEnter(Collider other)
     {
 
         if (other.TryGetComponent<GrappgeScript>(out grappgescript))
         {
-
             if (grappgescript != null)
             {
                 grappeid = grappgescript.GetGrappeID();
                 if (frogID == grappeid)
                 {
-                    Debug.Log(grappeid);
                     grappeIdList.Add(grappeid);
+                    Debug.Log("Üzüm ID ile Frog ID aynı, devam ediliyor.");
                 }
                 else
                 {
-                    Debug.Log("üzümle frog idleri aynı değil");
+                    Debug.Log("Üzüm ID farklı! Dil geri çekiliyor.");
+                    grappgescript.FalseGrape();
+                    tongueScript.StopAndReturnTongue();
                 }
-
             }
         }
 
     }
+
+
+  
+
 
     public void SetFrogID(int newFrogID)
     {
