@@ -16,9 +16,5 @@ public class GrappgeScript : MonoBehaviour
         return grappeID;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

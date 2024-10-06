@@ -4,31 +4,44 @@ using UnityEngine;
 
 public class MouseClickHandler : MonoBehaviour
 {
+    [SerializeField] private FrogScript frog;
+    [SerializeField] private TongueController tongue;
+    [SerializeField] private GameController gameController;
+    [SerializeField] private int frogID;
+    private void Awake()
+    {
+        gameController = GetComponent<GameController>();
+    }
     private void Update()
     {
-        // Sağ fare tuşuna basıldığında
-        if (Input.GetMouseButtonDown(1)) // 1 sağ fare tuşu
+        if (Input.GetMouseButtonDown(1))
         {
             HandleRightClick();
+
         }
     }
 
     private void HandleRightClick()
     {
-        // Fare pozisyonunu al
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        // Raycast ile tıklanan nesneyi kontrol et
         if (Physics.Raycast(ray, out hit))
         {
             // Tıklanan nesnenin üzerinde Frog script'i var mı kontrol et
             if (hit.transform.TryGetComponent<FrogScript>(out FrogScript frogScript))
             {
-                Debug.Log("kurbaga bulundı var");
-                if (hit.transform.TryGetComponent<TongueScript>(out TongueScript tongue))
+                frog = frogScript;
+                Debug.Log("frog id => " + frogScript.GetFrogID());
+                frogID = frogScript.GetFrogID();
+                if (hit.transform.TryGetComponent<TongueScript>(out TongueScript tonguescript))
                 {
-                    tongue.ShootTongue(); // Örneğin, dil atma fonksiyonunu çağırabilirsiniz
+                    tongue = tonguescript.GetTongueController();
+                    tongue.SetFrogID(frogID);
+                    tonguescript.ShootTongue();
+
+
+
                 }
                 else
                 {
@@ -41,4 +54,14 @@ public class MouseClickHandler : MonoBehaviour
             }
         }
     }
+
+
+
+    public void CompareFrogAndGrape()
+    {
+       
+    }
+
+
+
 }

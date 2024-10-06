@@ -5,18 +5,43 @@ using UnityEngine;
 public class TongueController : MonoBehaviour
 {
     [SerializeField] private GrappgeScript grappgescript;
+    [SerializeField] private int grappeid;
+    [SerializeField] private List<int> grappeIdList;
+    private int frogID;
 
     void OnTriggerEnter(Collider other)
     {
 
         if (other.TryGetComponent<GrappgeScript>(out grappgescript))
         {
-            Debug.Log(grappgescript);
+
             if (grappgescript != null)
             {
-                Debug.Log("Hedefin ID'si: " + grappgescript.GetGrappeID());
+                grappeid = grappgescript.GetGrappeID();
+                if (frogID == grappeid)
+                {
+                    Debug.Log(grappeid);
+                    grappeIdList.Add(grappeid);
+                }
+                else
+                {
+                    Debug.Log("üzümle frog idleri aynı değil");
+                }
+
             }
         }
-        else { Debug.Log("yokk"); }
+
     }
+
+    public void SetFrogID(int newFrogID)
+    {
+        frogID = newFrogID;
+        Debug.Log("Frog ID set edildi: " + frogID);
+    }
+
+    public void ClearList()
+    {
+        grappeIdList.Clear();
+    }
+
 }

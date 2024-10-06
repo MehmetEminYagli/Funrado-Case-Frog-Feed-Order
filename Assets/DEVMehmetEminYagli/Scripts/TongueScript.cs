@@ -12,43 +12,48 @@ public class TongueScript : MonoBehaviour
     [SerializeField] private GameObject currentTongue;
 
     [SerializeField] private float tongueSpeed = 5f;
-    [SerializeField] private float maxTongueLength = 5f; 
+    [SerializeField] private float maxTongueLength = 5f;
     [SerializeField] private float tongueWaitTime = 0.5f;
 
+
     private Vector3 tongueTarget;
-    private bool isReturning = false; 
+    private bool isReturning = false;
 
 
-
-    private void Update()
+    public TongueController GetTongueController()
     {
-        //if (Input.GetMouseButtonDown(1))
-        //{
-        //    ShootTongue();
-        //}
-
+        return tonguePrefab.GetComponentInChildren<TongueController>();
     }
+
+
 
     public void ShootTongue()
     {
-        if(currentTongue != null)
+        if (currentTongue == null)
         {
-            Debug.Log("mevcuttda bir tongue prefabı zaten var");
-            return;
+            // Create the tongue if it doesn't exist
+            tongueTarget = tongueSpawnPoint.right;
+            currentTongue = Instantiate(tonguePrefab, tongueSpawnPoint.position, Quaternion.LookRotation(tongueTarget), tongueSpawnPoint);
+            currentTongue.transform.DOScaleX(tonguePrefab.transform.localScale.x + maxTongueLength, tongueSpeed)
+                .OnComplete(() => StartCoroutine(ReturnTongue()));
         }
-
-        tongueTarget = tongueSpawnPoint.right;
-        currentTongue = Instantiate(tonguePrefab, tongueSpawnPoint.position, Quaternion.LookRotation(tongueTarget), tongueSpawnPoint);
-        currentTongue.transform.DOScaleX(tonguePrefab.transform.localScale.x + maxTongueLength, tongueSpeed)
-            .OnComplete(() => StartCoroutine(ReturnTongue(currentTongue)));
+        else
+        {
+            // If the tongue exists, just reset its scale to the starting position
+            currentTongue.transform.localScale = new Vector3(tonguePrefab.transform.localScale.x, currentTongue.transform.localScale.y, currentTongue.transform.localScale.z);
+            currentTongue.transform.DOScaleX(tonguePrefab.transform.localScale.x + maxTongueLength, tongueSpeed)
+                .OnComplete(() => StartCoroutine(ReturnTongue()));
+        }
     }
 
-    private IEnumerator ReturnTongue(GameObject tongue)
+    private IEnumerator ReturnTongue()
     {
         yield return new WaitForSeconds(tongueWaitTime);
-        tongue.transform.DOScaleX(tonguePrefab.transform.localScale.x, tongueSpeed).OnComplete(() =>
+
+        currentTongue.transform.DOScaleX(tonguePrefab.transform.localScale.x, tongueSpeed).OnComplete(() =>
         {
-            Destroy(tongue);
+            currentTongue.transform.position = tongueSpawnPoint.position;
+            currentTongue.GetComponent<TongueController>().ClearList();
         });
     }
 
