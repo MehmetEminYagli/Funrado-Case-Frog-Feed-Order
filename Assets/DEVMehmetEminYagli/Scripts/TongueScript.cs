@@ -17,7 +17,6 @@ public class TongueScript : MonoBehaviour
 
 
     private Vector3 tongueTarget;
-    private bool isReturning = false;
 
 
     public TongueController GetTongueController()
@@ -62,4 +61,10 @@ public class TongueScript : MonoBehaviour
         });
     }
 
+
+    //public void ChangeDirection(Vector3 newDirection)
+    //{
+    //    transform.right = newDirection;
+    //    Debug.Log("Dil yönü değiştirildi: " + newDirection);
+    //}
 }

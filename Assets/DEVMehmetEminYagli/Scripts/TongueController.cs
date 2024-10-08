@@ -9,6 +9,7 @@ public class TongueController : MonoBehaviour
     [SerializeField] private List<int> grappeIdList;
     private int frogID;
 
+
     private TongueScript tongueScript;
 
     void Start()
@@ -27,8 +28,8 @@ public class TongueController : MonoBehaviour
                 grappeid = grappgescript.GetGrappeID();
                 if (frogID == grappeid)
                 {
-                    grappeIdList.Add(grappeid);
                     grappgescript.TrueGrape();
+                    grappeIdList.Add(grappeid);
                     Debug.Log("Üzüm ID ile Frog ID aynı, devam ediliyor.");
                 }
                 else
@@ -40,11 +41,21 @@ public class TongueController : MonoBehaviour
             }
         }
 
+
+        if (other.TryGetComponent<CellScript>(out CellScript cellScript))
+        {
+            if (cellScript != null)
+            {
+                //dil uzamaya devam eder
+            }
+            else
+            {
+                //dil geri çekilir geri çekilirken üzümlerde kurbağa doğru gider.
+            }
+
+        }
+
     }
-
-
-  
-
 
     public void SetFrogID(int newFrogID)
     {

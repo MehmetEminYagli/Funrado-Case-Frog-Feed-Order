@@ -6,7 +6,6 @@ using DG.Tweening;
 public class GrappgeScript : MonoBehaviour
 {
     [SerializeField] private int grappeID;
-    [SerializeField] private List<Material> grappeColorList;
     [SerializeField] private Material FalseMaterialColor;
     private Material originalMaterial;
     void Start()
@@ -14,7 +13,6 @@ public class GrappgeScript : MonoBehaviour
         grappeID = 5;
         originalMaterial = GetComponentInChildren<Renderer>().material;
     }
-
     public int GetGrappeID()
     {
         return grappeID;
@@ -25,7 +23,6 @@ public class GrappgeScript : MonoBehaviour
         transform.DOScale(transform.localScale * 1.5f, 0.2f)
             .OnComplete(() =>
             {
-                // Küçülme animasyonu
                 transform.DOScale(transform.localScale / 1.5f, 0.2f);
             });
     }
@@ -34,22 +31,18 @@ public class GrappgeScript : MonoBehaviour
     {
         Renderer renderer = GetComponentInChildren<Renderer>();
 
-        // Büyürken rengi kırmızıya dönüyor
         transform.DOScale(transform.localScale * 1.5f, 0.2f)
             .OnStart(() =>
             {
-                renderer.material = FalseMaterialColor; // Rengi kırmızıya çevir
+                renderer.material = FalseMaterialColor;
             })
             .OnComplete(() =>
             {
-                // Küçülme işlemi başlıyor ve orijinal renge geri dönüyoruz
                 transform.DOScale(transform.localScale / 1.5f, 0.2f)
                     .OnComplete(() =>
                     {
-                        renderer.material = originalMaterial; // Eski renge geri dön
+                        renderer.material = originalMaterial;
                     });
             });
     }
-
-
 }
