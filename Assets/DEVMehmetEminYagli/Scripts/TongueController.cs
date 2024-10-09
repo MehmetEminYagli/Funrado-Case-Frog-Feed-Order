@@ -14,12 +14,15 @@ public class TongueController : MonoBehaviour
 
     void Start()
     {
-        //aklıma suan bu geldi.
         tongueScript = GetComponentInParent<TongueScript>();
     }
 
     void OnTriggerEnter(Collider other)
     {
+        if(other.TryGetComponent<FrogScript>(out FrogScript frog))
+        {
+            frogID = frog.GetFrogID();
+        }
 
         if (other.TryGetComponent<GrappgeScript>(out grappgescript))
         {
@@ -57,11 +60,6 @@ public class TongueController : MonoBehaviour
 
     }
 
-    public void SetFrogID(int newFrogID)
-    {
-        frogID = newFrogID;
-        Debug.Log("Frog ID set edildi: " + frogID);
-    }
 
     public void ClearList()
     {

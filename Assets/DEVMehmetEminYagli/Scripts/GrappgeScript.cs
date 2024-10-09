@@ -10,13 +10,19 @@ public class GrappgeScript : MonoBehaviour
     private Material originalMaterial;
     void Start()
     {
-        grappeID = 5;
+
         originalMaterial = GetComponentInChildren<Renderer>().material;
     }
     public int GetGrappeID()
     {
         return grappeID;
     }
+
+    public void SetGrapeID(int newGrapeID)
+    {
+        grappeID = newGrapeID;
+    }
+
 
     public void TrueGrape()
     {

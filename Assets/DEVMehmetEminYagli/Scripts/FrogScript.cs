@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class FrogScript : MonoBehaviour
 {
-    [SerializeField] private int FrogID;
-    [SerializeField] private SkinnedMeshRenderer frogRenderer;
-    void Start()
+    [SerializeField] private int frogID;
+
+    public void SetFrogID(int newFrogID)
     {
-        frogRenderer = this.GetComponentInChildren<SkinnedMeshRenderer>();
-        
+        frogID = newFrogID;
     }
+
 
     public int GetFrogID()
     {
-        return FrogID;
+        return frogID;
     }
 }

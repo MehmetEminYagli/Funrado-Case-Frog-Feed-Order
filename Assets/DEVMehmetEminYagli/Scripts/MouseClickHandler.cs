@@ -28,12 +28,11 @@ public class MouseClickHandler : MonoBehaviour
             if (hit.transform.TryGetComponent<FrogScript>(out FrogScript frogScript))
             {
                 frog = frogScript;
-                Debug.Log("frog id => " + frogScript.GetFrogID());
                 frogID = frogScript.GetFrogID();
                 if (hit.transform.TryGetComponent<TongueScript>(out TongueScript tonguescript))
                 {
                     tongue = tonguescript.GetTongueController();
-                    tongue.SetFrogID(frogID);
+                    frogScript.SetFrogID(frogID);
                     tonguescript.ShootTongue();
 
                 }
@@ -47,13 +46,6 @@ public class MouseClickHandler : MonoBehaviour
                 Debug.Log("Tıklanan nesnede Frog script'i yok.");
             }
         }
-    }
-
-
-
-    public void CompareFrogAndGrape()
-    {
-       
     }
 
 

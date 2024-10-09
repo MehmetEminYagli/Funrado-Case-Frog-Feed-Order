@@ -22,6 +22,10 @@ public class ObjectsColorMaterialList : MonoBehaviour
     {
         return frogSpawn;
     }
+    public int SelectedMaterialID()
+    {
+        return selectedMaterialID;
+    }
 
     public Material SelectedCellMaterial()
     {

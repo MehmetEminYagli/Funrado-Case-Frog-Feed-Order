@@ -18,6 +18,14 @@ public class TongueScript : MonoBehaviour
 
     private Vector3 tongueTarget;
 
+    public float GetMaxTongueLength()
+    {
+        return maxTongueLength;
+    }
+    public void SetMaxTongueLength(float newLength)
+    {
+        maxTongueLength += newLength;
+    }
 
     public TongueController GetTongueController()
     {
@@ -32,13 +40,13 @@ public class TongueScript : MonoBehaviour
         {
             tongueTarget = tongueSpawnPoint.right;
             currentTongue = Instantiate(tonguePrefab, tongueSpawnPoint.position, Quaternion.LookRotation(tongueTarget), tongueSpawnPoint);
-            currentTongue.transform.DOScaleX(tonguePrefab.transform.localScale.x + maxTongueLength, tongueSpeed)
+            currentTongue.transform.DOScaleX(tonguePrefab.transform.localScale.x + GetMaxTongueLength(), tongueSpeed)
                 .OnComplete(() => StartCoroutine(ReturnTongue()));
         }
         else
         {
             currentTongue.transform.localScale = new Vector3(tonguePrefab.transform.localScale.x, currentTongue.transform.localScale.y, currentTongue.transform.localScale.z);
-            currentTongue.transform.DOScaleX(tonguePrefab.transform.localScale.x + maxTongueLength, tongueSpeed)
+            currentTongue.transform.DOScaleX(tonguePrefab.transform.localScale.x + GetMaxTongueLength(), tongueSpeed)
                 .OnComplete(() => StartCoroutine(ReturnTongue()));
         }
     }
@@ -46,8 +54,8 @@ public class TongueScript : MonoBehaviour
     public void StopAndReturnTongue()
     {
         Debug.Log("Dil durduruyor ve geri çekiliyor");
-        currentTongue.transform.DOKill(); 
-        StartCoroutine(ReturnTongue()); 
+        currentTongue.transform.DOKill();
+        StartCoroutine(ReturnTongue());
     }
 
     private IEnumerator ReturnTongue()

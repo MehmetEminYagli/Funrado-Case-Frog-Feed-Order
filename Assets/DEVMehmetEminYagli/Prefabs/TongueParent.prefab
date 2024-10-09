@@ -131,6 +131,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grappgescript: {fileID: 0}
+  grappeid: 0
+  grappeIdList: 
 --- !u!65 &5623054992805942208
 BoxCollider:
   m_ObjectHideFlags: 0
