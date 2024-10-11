@@ -81,11 +81,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   materialList: {fileID: 0}
-  frogPrefab: {fileID: 0}
+  frogPrefab: {fileID: 3866540913256193634, guid: 77eac5bd83eee4e4786475fe87e0c0ee, type: 3}
   grapePrefab: {fileID: 6633370178490028560, guid: fcecfcf863d2b254b84cc1560a35c630, type: 3}
   spawnFrogPosition: {fileID: 4641139816185755700}
   spawnGrapePosition: {fileID: 8339287321327105934}
-  selectedRotation: 1
+  tongueScript: {fileID: 0}
+  selectedRotation: 2
 --- !u!114 &6789473658964349297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,7 +117,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 9a6f3e382d2a3e94fab35efb4d8b55e0, type: 2}
   - {fileID: 2100000, guid: ba14b5d953737c24986dc13a5cae8104, type: 2}
   - {fileID: 2100000, guid: b67cbb2ef94e0de4e8931d65193271a8, type: 2}
-  selectedMaterialID: 3
+  selectedMaterialID: 4
   grapeSpawn: 1
   frogSpawn: 0
 --- !u!65 &6895140601670007651

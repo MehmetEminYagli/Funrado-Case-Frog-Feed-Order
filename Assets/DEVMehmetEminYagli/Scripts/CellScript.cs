@@ -24,6 +24,8 @@ public class CellScript : MonoBehaviour
 
     [SerializeField] private Transform spawnFrogPosition;
     [SerializeField] private Transform spawnGrapePosition;
+    [SerializeField] private TongueController tongueScript;
+    [SerializeField] private int cellID;
 
     private Renderer cellRenderer;
 
@@ -31,13 +33,53 @@ public class CellScript : MonoBehaviour
 
     private bool canSpawn = false;
 
+    public ObjectsColorMaterialList GetMaterialList()
+    {
+        return materialList;
+    }
+
+    public Transform GetSpawnFrogPosition()
+    {
+        return spawnFrogPosition;
+    }
+
+    public Transform GetSpawnGrapePosition()
+    {
+        return spawnGrapePosition;
+    }
+
+    public void SetCellID(int newCellID)
+    {
+        cellID = newCellID;
+    }
+
+    public int getCellID()
+    {
+        return cellID;
+    }
     void Start()
     {
         GameStartBooleanControl();
         SetRotationDescription(selectedRotation);
         Quaternion rotation = GetRotation(selectedRotation);
         StartCoroutine(CheckAboveAndSpawn(rotation));
+        SetCellID(materialList.SelectedMaterialID());
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent<TongueController>(out TongueController tongue))
+        {
+            tongueScript = tongue;
+        }
+     
+    }
+
+    public TongueController GetTongueController()
+    {
+        return tongueScript;
+    }
+
 
     private bool IsCellScriptAbove()
     {
@@ -49,9 +91,10 @@ public class CellScript : MonoBehaviour
                 return true;
             }
         }
+      
+        
         return false;
     }
-
 
     IEnumerator CheckAboveAndSpawn(Quaternion rotation)
     {
@@ -120,8 +163,6 @@ public class CellScript : MonoBehaviour
         frog.transform.localScale = Vector3.zero;
         frog.transform.DOScale(Vector3.one, .2f);
 
-        //FrogScript frogScript = frog.GetComponent<FrogScript>();
-
 
         Material frogMaterial = materialList.SelectedFrogMaterial();
         if (frogMaterial != null)
@@ -139,8 +180,6 @@ public class CellScript : MonoBehaviour
         grapescript.SetGrapeID(materialList.SelectedMaterialID());
         grape.transform.localScale = Vector3.zero;
         grape.transform.DOScale(Vector3.one, .2f);
-    
-        //GrappgeScript grapeScript = grape.GetComponent<GrappgeScript>();
 
         Material grapeMaterial = materialList.SelectedGrapeMaterial();
         if (grapeMaterial != null)

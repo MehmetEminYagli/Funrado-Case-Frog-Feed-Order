@@ -100,11 +100,9 @@ MonoBehaviour:
   tongueSpawnPoint: {fileID: 4531578715457848536}
   currentTongue: {fileID: 0}
   tongueSpeed: 3
-  maxTongueLength: 10
+  maxTongueLength: 16
   tongueWaitTime: 0.2
-  grapeLayer:
-    serializedVersion: 2
-    m_Bits: 8
+  trueGrapeCount: 0
 --- !u!65 &4508909504718657401
 BoxCollider:
   m_ObjectHideFlags: 0

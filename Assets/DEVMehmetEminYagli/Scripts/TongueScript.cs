@@ -15,16 +15,17 @@ public class TongueScript : MonoBehaviour
     [SerializeField] private float maxTongueLength = 5f;
     [SerializeField] private float tongueWaitTime = 0.5f;
 
-
+    [SerializeField] private int tongueID;
     private Vector3 tongueTarget;
 
     public float GetMaxTongueLength()
     {
         return maxTongueLength;
     }
-    public void SetMaxTongueLength(float newLength)
+
+    public int GetTongueId()
     {
-        maxTongueLength += newLength;
+        return tongueID;
     }
 
     public TongueController GetTongueController()
@@ -32,12 +33,11 @@ public class TongueScript : MonoBehaviour
         return tonguePrefab.GetComponentInChildren<TongueController>();
     }
 
-
-
     public void ShootTongue()
     {
         if (currentTongue == null)
         {
+            tongueID = GetComponent<FrogScript>().GetFrogID();
             tongueTarget = tongueSpawnPoint.right;
             currentTongue = Instantiate(tonguePrefab, tongueSpawnPoint.position, Quaternion.LookRotation(tongueTarget), tongueSpawnPoint);
             currentTongue.transform.DOScaleX(tonguePrefab.transform.localScale.x + GetMaxTongueLength(), tongueSpeed)
@@ -58,21 +58,78 @@ public class TongueScript : MonoBehaviour
         StartCoroutine(ReturnTongue());
     }
 
+
+    [SerializeField] private int trueGrapeCount;
+
     private IEnumerator ReturnTongue()
     {
         yield return new WaitForSeconds(tongueWaitTime);
 
+        trueGrapeCount = currentTongue.GetComponentInChildren<TongueController>().GetGrappeIdList().Count;
+        Vector3 targetPosition = tongueSpawnPoint.position;
+
+        if (trueGrapeCount < 4)
+        {
+            ResetTonguePosition(targetPosition);
+        }
+        else
+        {
+            List<GameObject> touchedObjects = currentTongue.GetComponentInChildren<TongueController>().GetGrappeIdList();
+
+            foreach (GameObject obj in touchedObjects)
+            {
+                StartCoroutine(MoveAndShrinkObject(obj, targetPosition, tongueSpeed / 1.5f));
+            }
+            ResetTonguePosition(targetPosition);
+        }
+    }
+
+    private void ResetTonguePosition(Vector3 targetPosition)
+    {
         currentTongue.transform.DOScaleX(tonguePrefab.transform.localScale.x, tongueSpeed).OnComplete(() =>
         {
-            currentTongue.transform.position = tongueSpawnPoint.position;
-            currentTongue.GetComponent<TongueController>().ClearList();
+            currentTongue.transform.position = targetPosition;
+            currentTongue.GetComponentInChildren<TongueController>().ClearList();
         });
     }
 
+    private IEnumerator MoveAndShrinkObject(GameObject obj, Vector3 targetPosition, float duration)
+    {
+        float elapsedTime = 0f;
+        Vector3 startingPosition = obj.transform.position;
+        Vector3 startingScale = obj.transform.localScale;
 
-    //public void ChangeDirection(Vector3 newDirection)
-    //{
-    //    transform.right = newDirection;
-    //    Debug.Log("Dil yönü değiştirildi: " + newDirection);
-    //}
+        while (elapsedTime < duration)
+        {
+            float t = elapsedTime / duration;
+            obj.transform.position = Vector3.Lerp(startingPosition, targetPosition, t);
+            obj.transform.SetParent(null);
+            // Calculate scale based on distance to target
+            float distanceToTarget = Vector3.Distance(obj.transform.position, targetPosition);
+            float scaleFactor = Mathf.Clamp01(distanceToTarget / 0.4f);
+
+            obj.transform.localScale = startingScale * scaleFactor;
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Ensure the object is exactly at the target position and scaled to a small size at the end
+        obj.transform.position = targetPosition;
+        obj.transform.localScale = startingScale * 0.1f; // Adjust final size as needed
+
+        Destroy(obj);
+
+        TongueController tongueController = currentTongue.GetComponentInChildren<TongueController>();
+        if (tongueController != null)
+        {
+            tongueController.DestroyLastCollectedCell();
+        }
+
+        Destroy(gameObject);
+
+    }
+
+
+
 }
