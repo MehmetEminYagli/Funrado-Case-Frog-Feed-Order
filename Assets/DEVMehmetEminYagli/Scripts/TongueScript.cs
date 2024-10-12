@@ -53,7 +53,6 @@ public class TongueScript : MonoBehaviour
 
     public void StopAndReturnTongue()
     {
-        Debug.Log("Dil durduruyor ve geri çekiliyor");
         currentTongue.transform.DOKill();
         StartCoroutine(ReturnTongue());
     }
@@ -90,6 +89,7 @@ public class TongueScript : MonoBehaviour
         {
             currentTongue.transform.position = targetPosition;
             currentTongue.GetComponentInChildren<TongueController>().ClearList();
+            currentTongue.GetComponentInChildren<TongueController>().CellClearList();
         });
     }
 

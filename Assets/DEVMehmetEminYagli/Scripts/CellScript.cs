@@ -81,25 +81,47 @@ public class CellScript : MonoBehaviour
     }
 
 
+    public float detectionRadius = 0.1f;  // Üstteki cell ile aradaki minimum mesafe
+    public LayerMask cellLayerMask;
     private bool IsCellScriptAbove()
     {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.up, out hit, Mathf.Infinity))
+        // Üstümüzdeki cell'i tespit etmek için bir sphere (küre) kullanarak tarama yapıyoruz
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position + Vector3.up * 0.5f, detectionRadius, cellLayerMask);
+        foreach (var hitCollider in hitColliders)
         {
-            if (hit.collider.GetComponent<CellScript>() != null)
+            if (hitCollider != null && hitCollider.gameObject != this.gameObject)
             {
+                // Üstümüzde başka bir cell var demektir
                 return true;
             }
         }
-      
-        
+        // Üstte başka bir cell yok
         return false;
+;
     }
+
+    private void AdjustColliderSizeBasedOnPosition()
+    {
+        if (IsCellScriptAbove())
+        {
+            // Üstte başka bir CellScript varsa, bu cell'in collider boyutunu küçült
+            GetComponent<BoxCollider>().size = new Vector3(1, 0.1f, 1); // Yüksekliği küçült
+            GetComponent<BoxCollider>().enabled = false;
+        }
+        else
+        {
+            // Üstte başka bir cell yoksa collider boyutunu normale döndür
+            GetComponent<BoxCollider>().size = new Vector3(1, 1, 1); // Orijinal boyuta döndür
+            GetComponent<BoxCollider>().enabled = true;
+        }
+    }
+
 
     IEnumerator CheckAboveAndSpawn(Quaternion rotation)
     {
         while (true)
         {
+            AdjustColliderSizeBasedOnPosition();
             if (!IsCellScriptAbove())
             {
                 canSpawn = true;

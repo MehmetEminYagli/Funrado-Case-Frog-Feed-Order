@@ -17,7 +17,7 @@ public class TongueController : MonoBehaviour
     void Start()
     {
         tongueScript = GetComponentInParent<TongueScript>();
-        tongueID= tongueScript.GetTongueId();
+        tongueID = tongueScript.GetTongueId();
     }
 
     void OnTriggerEnter(Collider other)
@@ -36,11 +36,9 @@ public class TongueController : MonoBehaviour
                 {
                     grappgescript.TrueGrape();
                     grappeIdList.Add(grappgescript.gameObject);
-                    Debug.Log("Üzüm ID ile Frog ID aynı, devam ediliyor.");
                 }
                 else
                 {
-                    Debug.Log("Üzüm ID farklı! Dil geri çekiliyor.");
                     grappgescript.FalseGrape();
                     tongueScript.StopAndReturnTongue();
                 }
@@ -49,17 +47,15 @@ public class TongueController : MonoBehaviour
 
         if (other.TryGetComponent<CellScript>(out CellScript cell))
         {
-            if (tongueID == cell.getCellID())
-            {
-                collectedCells.Add(cell.gameObject);
-                Debug.Log("afsf");
-            }
+
+            collectedCells.Add(cell.gameObject);
+
         }
 
 
     }
 
-   
+
 
     private void OnTriggerExit(Collider other)
     {
@@ -67,7 +63,6 @@ public class TongueController : MonoBehaviour
         {
             if (cell.GetSpawnGrapePosition().childCount == 0 && cell.GetSpawnFrogPosition().childCount == 0)
             {
-                Debug.Log("bura çalıştı");
                 DestroyLastCollectedCell();
             }
         }
@@ -97,6 +92,13 @@ public class TongueController : MonoBehaviour
     public List<GameObject> GetCollectedCells()
     {
         return collectedCells;
+    }
+    public void CellClearList()
+    {
+        for (int i = collectedCells.Count - 1; i > 0; i--)
+        {
+            collectedCells.RemoveAt(i);
+        }
     }
     public List<GameObject> GetGrappeIdList()
     {
