@@ -7,7 +7,7 @@ public class MouseClickHandler : MonoBehaviour
     [SerializeField] private FrogScript frog;
     [SerializeField] private TongueController tongue;
     [SerializeField] private int frogID;
-    private bool isProcessing = false;  // İşlemde olup olmadığını kontrol eden değişken
+    private bool isProcessing = false;
 
     private void Update()
     {
@@ -24,13 +24,11 @@ public class MouseClickHandler : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            // Tıklanan nesnenin üzerinde Frog script'i var mı kontrol et
             if (hit.transform.TryGetComponent<FrogScript>(out FrogScript frogScript))
             {
                 frog = frogScript;
                 frogID = frogScript.GetFrogID();
 
-                // İşlem başladı, isProcessing true olarak ayarlanır
                 isProcessing = true;
 
                 if (hit.transform.TryGetComponent<TongueScript>(out TongueScript tonguescript))
@@ -39,13 +37,12 @@ public class MouseClickHandler : MonoBehaviour
                     frogScript.SetFrogID(frogID);
                     tonguescript.ShootTongue();
 
-                    // TongueScript'teki işlemler tamamlandığında isProcessing'i false yapabilirsiniz.
                     StartCoroutine(ResetProcessing());  // Coroutine ile işlem süresi sonunda resetlenecek
                 }
                 else
                 {
                     Debug.Log("Dil scripti bulunamadi");
-                    isProcessing = false;  // Eğer dil scripti yoksa işlemi yeniden açıyoruz
+                    isProcessing = false;
                 }
             }
             else
@@ -58,9 +55,7 @@ public class MouseClickHandler : MonoBehaviour
 
     private IEnumerator ResetProcessing()
     {
-        // İşlemin tamamlanması için bir süre bekleyebilirsiniz, buradaki süreyi ayarlayın
-        yield return new WaitForSeconds(2.5f);  // 2 saniye bekleyelim
-
-        isProcessing = false;  // İşlem tamamlandı
+        yield return new WaitForSeconds(2.2f); 
+        isProcessing = false;
     }
 }

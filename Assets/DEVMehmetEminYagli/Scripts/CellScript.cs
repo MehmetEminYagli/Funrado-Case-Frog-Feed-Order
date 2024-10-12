@@ -4,20 +4,6 @@ using UnityEngine;
 using DG.Tweening;
 public class CellScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    /*
-     üzerinde üzüm mü yoksa kurbağamı var onu kontrol edicek.
-    kendi rengi ile uyumlu kurbağa ve üzümü spawn edicek
-    eğer üstünde başka bir cell scripti var ise üzüm spawn etmiyecek
-    üstü boş ise rengini kontrol edip o renkte üzüm spawn edicek.
-    eğer kurbağa doğru renkteki üzümleri alırsa boolean bir değişken göndericek ve kendini destroy ettiğinde
-    cell üstünde kurbağa scripti yoksa diğer cell scriptleride 
-    kendi üstünde grape scripti varmı yok mu onu kontrol edicek. //yada sürekli bunu kontrol edebiliriz ama performans sorunu olur.
-    üstünde grape scripti bulamayanlar kendilerini destroy edicek.
-    !!! OK ve kurbağa yönünü kontrol edicek ve önünde cell scripti olan yöne bakıcak şekilde spawn olucak..
-     
-     */
-
     [SerializeField] private ObjectsColorMaterialList materialList;
     [SerializeField] private GameObject frogPrefab;
     [SerializeField] private GameObject grapePrefab;
@@ -81,12 +67,11 @@ public class CellScript : MonoBehaviour
     }
 
 
-    public float detectionRadius = 0.1f;  // Üstteki cell ile aradaki minimum mesafe
-    public LayerMask cellLayerMask;
+    private float detectionRadius = 0.1f;  // Üstteki cell ile aradaki minimum mesafe
     private bool IsCellScriptAbove()
     {
         // Üstümüzdeki cell'i tespit etmek için bir sphere (küre) kullanarak tarama yapıyoruz
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position + Vector3.up * 0.5f, detectionRadius, cellLayerMask);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position + Vector3.up * 0.5f, detectionRadius);
         foreach (var hitCollider in hitColliders)
         {
             if (hitCollider != null && hitCollider.gameObject != this.gameObject)
@@ -105,13 +90,13 @@ public class CellScript : MonoBehaviour
         if (IsCellScriptAbove())
         {
             // Üstte başka bir CellScript varsa, bu cell'in collider boyutunu küçült
-            GetComponent<BoxCollider>().size = new Vector3(1, 0.1f, 1); // Yüksekliği küçült
+            GetComponent<BoxCollider>().size = new Vector3(1, 0.1f, 1);
             GetComponent<BoxCollider>().enabled = false;
         }
         else
         {
             // Üstte başka bir cell yoksa collider boyutunu normale döndür
-            GetComponent<BoxCollider>().size = new Vector3(1, 1, 1); // Orijinal boyuta döndür
+            GetComponent<BoxCollider>().size = new Vector3(1, 1, 1);
             GetComponent<BoxCollider>().enabled = true;
         }
     }
@@ -221,14 +206,7 @@ public class CellScript : MonoBehaviour
 
     public enum RotationOptions
     {
-        Right,     // 0° - Sağa doğru bakar
-        RightUp,   // 45° - Sağ üst köşeye doğru bakar
-        Up,        // 90° - Yukarıya doğru bakar
-        LeftUp,    // 135° - Sol üst köşeye doğru bakar
-        Left,      // 180° - Sola doğru bakar
-        LeftDown,  // 225° - Sol alt köşeye doğru bakar
-        Down,      // 270° - Aşağıya doğru bakar
-        RightDown  // 315° - Sağ alt köşeye doğru bakar
+        Right,RightUp,Up,LeftUp,Left,LeftDown,Down,RightDown
     }
 
 

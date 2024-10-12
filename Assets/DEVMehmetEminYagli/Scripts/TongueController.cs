@@ -5,14 +5,14 @@ using DG.Tweening;
 public class TongueController : MonoBehaviour
 {
     [SerializeField] private GrappgeScript grappgescript;
-    [SerializeField] private int grappeid;
+    private TongueScript tongueScript;
     [SerializeField] private List<GameObject> grappeIdList;
     [SerializeField] private List<GameObject> collectedCells = new List<GameObject>();
+    [SerializeField] private int grappeid;
     private int frogID;
-    [SerializeField] private int tongueID;
+    private int tongueID;
 
 
-    private TongueScript tongueScript;
 
     void Start()
     {
@@ -51,11 +51,7 @@ public class TongueController : MonoBehaviour
             collectedCells.Add(cell.gameObject);
 
         }
-
-
     }
-
-
 
     private void OnTriggerExit(Collider other)
     {
@@ -74,17 +70,15 @@ public class TongueController : MonoBehaviour
         {
             GameObject lastCell = collectedCells[collectedCells.Count - 1];
 
-            lastCell.transform.DOScale(lastCell.transform.localScale * 1.2f, 0.2f) // 1.5 kat büyüt
+            lastCell.transform.DOScale(lastCell.transform.localScale * 1.2f, 0.2f)
         .OnComplete(() =>
         {
-            lastCell.transform.DOScale(Vector3.zero, 0.4f) // 0'a küçült
+            lastCell.transform.DOScale(Vector3.zero, 0.4f) 
                 .OnComplete(() =>
                 {
-                    Destroy(lastCell); // Yok et
+                    Destroy(lastCell);
                 });
         });
-
-
             collectedCells.RemoveAt(collectedCells.Count - 1);
         }
     }
@@ -108,5 +102,4 @@ public class TongueController : MonoBehaviour
     {
         grappeIdList.Clear();
     }
-
 }

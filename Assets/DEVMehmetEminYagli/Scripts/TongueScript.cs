@@ -127,9 +127,5 @@ public class TongueScript : MonoBehaviour
         }
 
         Destroy(gameObject);
-
     }
-
-
-
 }
