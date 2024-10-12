@@ -7,11 +7,17 @@ public class MouseClickHandler : MonoBehaviour
     [SerializeField] private FrogScript frog;
     [SerializeField] private TongueController tongue;
     [SerializeField] private int frogID;
+    [SerializeField] private GameController gameController;
     private bool isProcessing = false;
+
+    private void Awake()
+    {
+        gameController = GetComponent<GameController>();
+    }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(1) && !isProcessing)  // Eğer işlemde değilse tıklamaya izin ver
+        if (Input.GetMouseButtonDown(1) && !isProcessing && gameController.GetRemainingClicks() > 0)  // Eğer işlemde değilse tıklamaya izin ver
         {
             HandleRightClick();
         }
@@ -33,10 +39,11 @@ public class MouseClickHandler : MonoBehaviour
 
                 if (hit.transform.TryGetComponent<TongueScript>(out TongueScript tonguescript))
                 {
+
                     tongue = tonguescript.GetTongueController();
                     frogScript.SetFrogID(frogID);
                     tonguescript.ShootTongue();
-
+                    gameController.DecreaseClickCount();
                     StartCoroutine(ResetProcessing());  // Coroutine ile işlem süresi sonunda resetlenecek
                 }
                 else
@@ -53,9 +60,14 @@ public class MouseClickHandler : MonoBehaviour
         }
     }
 
+
+
     private IEnumerator ResetProcessing()
     {
-        yield return new WaitForSeconds(2.2f); 
+        yield return new WaitForSeconds(0.5f);
         isProcessing = false;
     }
+
+
+
 }

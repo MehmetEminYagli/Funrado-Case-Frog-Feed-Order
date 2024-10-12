@@ -64,6 +64,9 @@ PrefabInstance:
       addedObject: {fileID: 5849287392665100425}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 72fc7abc72010ab4daa064af934e8083, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 6486123809777083487}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 72fc7abc72010ab4daa064af934e8083, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 4508909504718657401}
   m_SourcePrefab: {fileID: 100100000, guid: 72fc7abc72010ab4daa064af934e8083, type: 3}
 --- !u!1 &3866540913256193634 stripped
@@ -102,7 +105,20 @@ MonoBehaviour:
   tongueSpeed: 3
   maxTongueLength: 16
   tongueWaitTime: 0.2
+  tongueID: 0
   trueGrapeCount: 0
+--- !u!114 &6486123809777083487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3866540913256193634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de1075ccb07623c4b87fb3efda593fa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &4508909504718657401
 BoxCollider:
   m_ObjectHideFlags: 0
