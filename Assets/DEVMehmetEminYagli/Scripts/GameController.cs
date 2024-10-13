@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject winnerPanel;
     [SerializeField] private GameObject remainTextPanel;
     [SerializeField] private TextMeshProUGUI remainText;
+    [SerializeField] private int activeScene;
 
 
     private List<GameObject> frogs = new List<GameObject>();
@@ -32,6 +33,7 @@ public class GameController : MonoBehaviour
         winnerPanel.SetActive(false);
         remainTextPanel.SetActive(true);
         remainText.text = remainingClicks.ToString();
+        activeScene = SceneManager.GetActiveScene().buildIndex;
     }
 
     private void RegisterFrog(GameObject frog)
@@ -80,8 +82,21 @@ public class GameController : MonoBehaviour
 
     public void RestartBtn()
     {
-        int activeScene = SceneManager.GetActiveScene().buildIndex;
+       
         SceneManager.LoadScene(activeScene);
+    }
+
+    public void NextLevelBtn()
+    {
+        int nextSceneIndex = activeScene + 1;
+       
+        if (nextSceneIndex >= SceneManager.sceneCountInBuildSettings)
+        {
+            nextSceneIndex = 0; 
+            //oyunu bitirdiniz yakında yeni leveller eklenicek sahnesi;
+        }
+
+        SceneManager.LoadScene(nextSceneIndex);
     }
 
 }

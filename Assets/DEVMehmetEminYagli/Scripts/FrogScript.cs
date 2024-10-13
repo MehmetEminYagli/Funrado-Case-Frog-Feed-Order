@@ -6,12 +6,12 @@ public class FrogScript : MonoBehaviour
     [SerializeField] private int frogID;
     private void Start()
     {
-        FrogEvents.FrogSpawned(this.gameObject);
+        FrogEvents.FrogSpawned(gameObject);
     }
 
     private void OnDestroy()
     {
-        FrogEvents.FrogDestroyed(this.gameObject); 
+        FrogEvents.FrogDestroyed(gameObject); 
     }
 
     public void SetFrogID(int newFrogID)
