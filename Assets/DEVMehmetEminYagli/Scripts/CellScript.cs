@@ -63,7 +63,7 @@ public class CellScript : MonoBehaviour
     }
 
 
-    private float detectionRadius = 0.1f;  // Üstteki cell ile aradaki minimum mesafe
+    private float detectionRadius = 0.1f; 
     private bool IsCellScriptAbove()
     {
         // Üstümüzdeki cell'i tespit etmek için bir sphere (küre) kullanarak tarama yapıyoruz

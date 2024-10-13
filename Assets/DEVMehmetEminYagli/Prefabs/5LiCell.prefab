@@ -86,7 +86,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6020745337945412541, guid: 7b48245584a86584c900af5fc2083e49, type: 3}
       propertyPath: m_Name
-      value: Cell (10)
+      value: FrogCell
       objectReference: {fileID: 0}
     - target: {fileID: 6475992375348180732, guid: 7b48245584a86584c900af5fc2083e49, type: 3}
       propertyPath: selectedRotation
@@ -234,7 +234,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6020745337945412541, guid: 7b48245584a86584c900af5fc2083e49, type: 3}
       propertyPath: m_Name
-      value: Cell (11)
+      value: Cell1
       objectReference: {fileID: 0}
     - target: {fileID: 6475992375348180732, guid: 7b48245584a86584c900af5fc2083e49, type: 3}
       propertyPath: selectedRotation
@@ -304,7 +304,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6020745337945412541, guid: 7b48245584a86584c900af5fc2083e49, type: 3}
       propertyPath: m_Name
-      value: Cell (9)
+      value: Cell2
       objectReference: {fileID: 0}
     - target: {fileID: 6020745337945412541, guid: 7b48245584a86584c900af5fc2083e49, type: 3}
       propertyPath: m_IsActive
@@ -378,7 +378,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6020745337945412541, guid: 7b48245584a86584c900af5fc2083e49, type: 3}
       propertyPath: m_Name
-      value: Cell (4)
+      value: Cell3
       objectReference: {fileID: 0}
     - target: {fileID: 6475992375348180732, guid: 7b48245584a86584c900af5fc2083e49, type: 3}
       propertyPath: selectedRotation
