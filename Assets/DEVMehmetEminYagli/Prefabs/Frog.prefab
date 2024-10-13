@@ -103,7 +103,7 @@ MonoBehaviour:
   tongueSpawnPoint: {fileID: 4531578715457848536}
   currentTongue: {fileID: 0}
   tongueSpeed: 3
-  maxTongueLength: 16
+  maxTongueLength: 14
   tongueWaitTime: 0.2
   tongueID: 0
   trueGrapeCount: 0

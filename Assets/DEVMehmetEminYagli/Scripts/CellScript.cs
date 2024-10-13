@@ -207,7 +207,6 @@ public class CellScript : MonoBehaviour
     public enum RotationOptions
     {
         Right, Up, Left, Down,
-        //RightUp,LeftUp,LeftDown,RightDown
     }
 
 
@@ -216,13 +215,9 @@ public class CellScript : MonoBehaviour
         string description = rotationOption switch
         {
             RotationOptions.Right => "Sağa doğru bakar.",
-            //RotationOptions.RightUp => "Sağ üst köşeye doğru bakar.",
             RotationOptions.Up => "Yukarıya doğru bakar.",
-            //RotationOptions.LeftUp => "Sol üst köşeye doğru bakar.",
             RotationOptions.Left => "Sola doğru bakar.",
-            //RotationOptions.LeftDown => "Sol alt köşeye doğru bakar.",
             RotationOptions.Down => "Aşağıya doğru bakar.",
-            //RotationOptions.RightDown => "Sağ alt köşeye doğru bakar.",
             _ => "Geçersiz açı."
         };
 
@@ -233,13 +228,9 @@ public class CellScript : MonoBehaviour
         return rotationOption switch
         {
             RotationOptions.Right => Quaternion.Euler(0, -45, 0),
-            //RotationOptions.RightDown => Quaternion.Euler(0, 45, 0),
             RotationOptions.Down => Quaternion.Euler(0, 45, 0),
-            //RotationOptions.LeftDown => Quaternion.Euler(0, 135, 0),
             RotationOptions.Left => Quaternion.Euler(0, 135, 0),
-            //RotationOptions.LeftUp => Quaternion.Euler(0, 225, 0),
             RotationOptions.Up => Quaternion.Euler(0, 225, 0),
-            //RotationOptions.RightUp => Quaternion.Euler(0, 315, 0),
             _ => Quaternion.identity // Geçersiz durum
         };
     }
