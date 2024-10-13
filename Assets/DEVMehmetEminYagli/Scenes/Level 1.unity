@@ -188,7 +188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5896378304409428958, guid: 2b59c9e1f8255314a843f284338b728a, type: 3}
       propertyPath: selectedRotation
-      value: 7
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6211152458741302355, guid: 2b59c9e1f8255314a843f284338b728a, type: 3}
       propertyPath: selectedMaterialID
