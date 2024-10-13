@@ -15,17 +15,11 @@ public class TongueScript : MonoBehaviour
     [SerializeField] private float maxTongueLength = 5f;
     [SerializeField] private float tongueWaitTime = 0.5f;
 
-    [SerializeField] private int tongueID;
     private Vector3 tongueTarget;
 
     public float GetMaxTongueLength()
     {
         return maxTongueLength;
-    }
-
-    public int GetTongueId()
-    {
-        return tongueID;
     }
 
     public TongueController GetTongueController()
@@ -37,7 +31,6 @@ public class TongueScript : MonoBehaviour
     {
         if (currentTongue == null)
         {
-            tongueID = GetComponent<FrogScript>().GetFrogID();
             tongueTarget = tongueSpawnPoint.right;
             currentTongue = Instantiate(tonguePrefab, tongueSpawnPoint.position, Quaternion.LookRotation(tongueTarget), tongueSpawnPoint);
             currentTongue.transform.DOScaleX(tonguePrefab.transform.localScale.x + GetMaxTongueLength(), tongueSpeed)
@@ -57,14 +50,11 @@ public class TongueScript : MonoBehaviour
         StartCoroutine(ReturnTongue());
     }
 
-
-    [SerializeField] private int trueGrapeCount;
-
     private IEnumerator ReturnTongue()
     {
         yield return new WaitForSeconds(tongueWaitTime);
 
-        trueGrapeCount = currentTongue.GetComponentInChildren<TongueController>().GetGrappeIdList().Count;
+        int trueGrapeCount = currentTongue.GetComponentInChildren<TongueController>().GetGrappeIdList().Count;
         Vector3 targetPosition = tongueSpawnPoint.position;
 
         if (trueGrapeCount < 4)

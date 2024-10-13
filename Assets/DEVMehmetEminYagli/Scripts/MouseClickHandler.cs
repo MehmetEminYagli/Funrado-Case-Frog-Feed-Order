@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class MouseClickHandler : MonoBehaviour
 {
-    [SerializeField] private FrogScript frog;
-    [SerializeField] private TongueController tongue;
-    [SerializeField] private int frogID;
+    private int frogID;
     [SerializeField] private GameController gameController;
     private bool isProcessing = false;
 
@@ -17,7 +15,7 @@ public class MouseClickHandler : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(1) && !isProcessing && gameController.GetRemainingClicks() > 0)  // Eğer işlemde değilse tıklamaya izin ver
+        if (Input.GetMouseButtonDown(1) && !isProcessing && gameController.GetRemainingClicks() > 0) 
         {
             HandleRightClick();
         }
@@ -32,15 +30,12 @@ public class MouseClickHandler : MonoBehaviour
         {
             if (hit.transform.TryGetComponent<FrogScript>(out FrogScript frogScript))
             {
-                frog = frogScript;
                 frogID = frogScript.GetFrogID();
-
                 isProcessing = true;
 
                 if (hit.transform.TryGetComponent<TongueScript>(out TongueScript tonguescript))
                 {
 
-                    tongue = tonguescript.GetTongueController();
                     frogScript.SetFrogID(frogID);
                     tonguescript.ShootTongue();
                     gameController.DecreaseClickCount();
@@ -64,7 +59,7 @@ public class MouseClickHandler : MonoBehaviour
 
     private IEnumerator ResetProcessing()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         isProcessing = false;
     }
 

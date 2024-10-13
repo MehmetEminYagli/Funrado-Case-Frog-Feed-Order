@@ -80,17 +80,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a24105a7e265d248befff0b77c57a11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialList: {fileID: 0}
   frogPrefab: {fileID: 3866540913256193634, guid: 77eac5bd83eee4e4786475fe87e0c0ee, type: 3}
   grapePrefab: {fileID: 6633370178490028560, guid: fcecfcf863d2b254b84cc1560a35c630, type: 3}
   spawnFrogPosition: {fileID: 4641139816185755700}
   spawnGrapePosition: {fileID: 8339287321327105934}
-  tongueScript: {fileID: 0}
-  cellID: 0
   selectedRotation: 2
-  cellLayerMask:
-    serializedVersion: 2
-    m_Bits: 128
 --- !u!114 &6789473658964349297
 MonoBehaviour:
   m_ObjectHideFlags: 0

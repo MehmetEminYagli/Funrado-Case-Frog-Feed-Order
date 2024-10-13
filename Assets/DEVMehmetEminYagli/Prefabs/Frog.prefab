@@ -104,9 +104,7 @@ MonoBehaviour:
   currentTongue: {fileID: 0}
   tongueSpeed: 3
   maxTongueLength: 14
-  tongueWaitTime: 0.2
-  tongueID: 0
-  trueGrapeCount: 0
+  tongueWaitTime: 0.1
 --- !u!114 &6486123809777083487
 MonoBehaviour:
   m_ObjectHideFlags: 0

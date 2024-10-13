@@ -34,6 +34,13 @@ public class GameController : MonoBehaviour
         remainTextPanel.SetActive(true);
         remainText.text = remainingClicks.ToString();
         activeScene = SceneManager.GetActiveScene().buildIndex;
+        if (activeScene == 0)
+        {
+            gameOverPanel.SetActive(false);
+            winnerPanel.SetActive(false);
+            remainTextPanel.SetActive(false);
+            remainText.gameObject.SetActive(false);
+        }
     }
 
     private void RegisterFrog(GameObject frog)
@@ -60,8 +67,6 @@ public class GameController : MonoBehaviour
     {
         remainingClicks--;
         remainText.text = remainingClicks.ToString();
-        Debug.Log("Kalan tıklama hakkı: " + remainingClicks);
-
         if (remainingClicks <= 0)
         {
             GameOver();

@@ -10,14 +10,12 @@ public class TongueController : MonoBehaviour
     [SerializeField] private List<GameObject> collectedCells = new List<GameObject>();
     [SerializeField] private int grappeid;
     private int frogID;
-    private int tongueID;
 
 
 
     void Start()
     {
         tongueScript = GetComponentInParent<TongueScript>();
-        tongueID = tongueScript.GetTongueId();
     }
 
     void OnTriggerEnter(Collider other)
